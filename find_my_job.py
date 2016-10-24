@@ -9,4 +9,4 @@ careerjet = CareerJet(ids['careerjet'],
     'ip_goes_here',
     'Mozilla',
     'en_GB')
-print(careerjet.search('berlin', 'robotics', 'http://www.example.com/jobsearch?q=python&l=london'))
+print(careerjet.search('zurich', 'robotics', 'http://www.example.com/jobsearch?q=python&l=london'))

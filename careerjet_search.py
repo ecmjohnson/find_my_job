@@ -19,4 +19,4 @@ class CareerJet:
                                 'url'         : url,
                                 'user_agent'  : self.agent
                               });
-        return(result_json['jobs'])
+        return result_json['jobs']
