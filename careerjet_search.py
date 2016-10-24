@@ -8,6 +8,10 @@ class CareerJet:
         self.agent = user_agent
         self.cj  =  CareerjetAPIClient(locale_code);
 
+    # search the available jobs that fit the criteria
+    # returns a list of jobs or -1 if search fails
+    # each job is a dict with the following keys of interest:
+    #      salary_min, title, description, url, company, location, date
     def search(self, location, keywords, url):
         # returns a dict with keys:
         #      type, hits, jobs, pages, response_time
@@ -19,4 +23,13 @@ class CareerJet:
                                 'url'         : url,
                                 'user_agent'  : self.agent
                               });
-        return result_json['jobs']
+        # we're interested chiefly in the jobs field
+        # does not exist if we didn't find any jobs
+        try:
+            return result_json['jobs']
+        except KeyError:
+            return -1
+
+    # change the domain being searched
+    def change_locale(self, new_locale):
+        self.cj = CareerjetAPIClient(new_locale)
