@@ -1,5 +1,6 @@
 from careerjet_api_client import CareerjetAPIClient
 
+
 # class for interfacing with the CareerJet API
 class CareerJet:
 
@@ -7,7 +8,7 @@ class CareerJet:
         self.affid = secret
         self.ip = ip_addr
         self.agent = user_agent
-        self.cj  =  CareerjetAPIClient(locale_code);
+        self.cj = CareerjetAPIClient(locale_code)
 
     # search the available jobs that fit the criteria
     # returns a list of jobs or -1 if search fails
@@ -17,13 +18,13 @@ class CareerJet:
         # returns a dict with keys:
         #      type, hits, jobs, pages, response_time
         result_json = self.cj.search({
-                                'location'    : location,
-                                'keywords'    : keywords,
-                                'affid'       : self.affid,
-                                'user_ip'     : self.ip,
-                                'url'         : url,
-                                'user_agent'  : self.agent
-                              });
+                                'location': location,
+                                'keywords': keywords,
+                                'affid': self.affid,
+                                'user_ip': self.ip,
+                                'url': url,
+                                'user_agent': self.agent
+                              })
         # we're interested chiefly in the jobs field
         # does not exist if we didn't find any jobs
         try:
