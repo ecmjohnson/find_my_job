@@ -15,18 +15,25 @@ careerjet = CareerJet(
     'en_GB'
 )
 search = careerjet.search('zurich', 'robotics', 'http://www.example.com/')
-for job in search:
-    try:
-        salary = int(job['salary_min'])
-        currency = job['salary_currency_code']
-    except KeyError, ValueError:
-        salary = -1
-        currency = 'None'
-    jobs.append(Job(
-        job['title'],
-        job['description'],
-        salary,
-        currency,
-        job['company'],
-        job['url']
-    ))
+
+# check success of search
+if search != -1:
+    # build a list of job objects for comparison
+    for job in search:
+        try:
+            salary = int(job['salary_min'])
+            currency = job['salary_currency_code']
+        except KeyError, ValueError:
+            salary = -1
+            currency = 'None'
+        jobs.append(Job(
+            job['title'],
+            job['description'],
+            salary,
+            currency,
+            job['company'],
+            'zurich',
+            job['url']
+        ))
+else:
+    pass  # should probably notify user
