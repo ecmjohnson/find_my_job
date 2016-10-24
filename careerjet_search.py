@@ -1,5 +1,6 @@
 from careerjet_api_client import CareerjetAPIClient
 
+# class for interfacing with the CareerJet API
 class CareerJet:
 
     def __init__(self, secret, ip_addr, user_agent, locale_code):
