@@ -1,5 +1,5 @@
 # Application specific
-*.ids # the api keys used
+*.ids
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
