@@ -23,5 +23,13 @@ class Job:  # no, not the former Apple CEO
     #      third component of value is the company
     #      fourth component of value is the locations
     #      fifth component of value is the quality of the url
-    def compute_value(self):
-        pass
+    def compute_value(self, params):
+        self.value = 0
+        # determine first component
+        words = self.title + ' ' + self.description
+        num_words = len(words.split(' '))
+        for keyword in params['keywords']['pos'].split(';'):
+            self.value += 1
+        for keyword in params['keywords']['neg'].split(';'):
+            self.value -= 1
+        # to be continues

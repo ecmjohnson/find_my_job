@@ -10,6 +10,10 @@ with open('secrets.ids') as f:
 with open('where_what.json') as f:
     where_what = json.loads(f.read())
 
+# get the definitions for the assignment of value for jobs
+with open('interests.json') as f:
+    interests = json.loads(f.read())
+
 # for every user desired location, keyword pair
 jobs = []
 for location in where_what.keys():
@@ -46,7 +50,7 @@ for location in where_what.keys():
 
 # now we need to evaluate all the jobs based on the users interest
 for job in jobs:
-    job.compute_value()
+    job.compute_value(interests)
 
 # order the jobs by their computed value
 jobs.sort(key=lambda x: x.value, reverse=True)
