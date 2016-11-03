@@ -25,12 +25,15 @@ class Job:  # no, not the former Apple CEO
     #      fourth component of value is the locations
     #      fifth component of value is the quality of the url
     def compute_value(self, params):
-        self.value = 0
+        self.value = 0.0
         # determine first component
         words = self.title + ' ' + self.description
-        num_words = len(words.split(' '))
         for keyword in params['keywords']['pos'].split(';'):
             self.value += words.count(keyword)
         for keyword in params['keywords']['neg'].split(';'):
             self.value -= words.count(keyword)
+        # determine the second component (well, without currency conversion)
+        if self.salary != -1:
+            # since I want to be paid more than 40'000 money units
+            self.value += self.salary/10000 - 4
         # to be continues
