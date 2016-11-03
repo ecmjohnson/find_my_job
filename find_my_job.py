@@ -19,14 +19,14 @@ with open('interests.json') as f:
 # for every user desired location, keyword pair
 jobs = []
 for domain in where_what.keys():
+    careerjet = CareerJet(
+        ids['careerjet'],
+        'ip_goes_here',
+        'Mozilla',
+        domain
+    )
     for location in where_what[domain].keys():
         # search careerjet using their api
-        careerjet = CareerJet(
-            ids['careerjet'],
-            'ip_goes_here',
-            'Mozilla',
-            domain
-        )
         search = careerjet.search(location,
                                   where_what[domain][location],
                                   'http://www.example.com/')
@@ -62,8 +62,11 @@ for job in jobs:
 jobs.sort(key=lambda x: x.value, reverse=True)
 
 # pickle the list so we can read it back later to compare and track jobs
-with open('save.sv', 'w+') as f:
-    pickle.dump(jobs, f)
+# need to save where_what to be able to replicate the search
+filename = hash(frozenset(json.dumps(where_what)))
+with open(str(filename) + '.sv', 'w+') as f:
+    to_pickle = {'jobs' : jobs, 'locations' : where_what}
+    pickle.dump(to_pickle, f)
 
 # get the job values for display
 vals = [x.value for x in jobs]
