@@ -61,6 +61,10 @@ for job in jobs:
 # order the jobs by their computed value
 jobs.sort(key=lambda x: x.value, reverse=True)
 
-# pickle the list so we can read it back later to compare
+# pickle the list so we can read it back later to compare and track jobs
+with open('save.sv', 'w+') as f:
+    pickle.dump(jobs, f)
 
-import ipdb; ipdb.set_trace()
+# get the job values for display
+vals = [x.value for x in jobs]
+print(vals)
