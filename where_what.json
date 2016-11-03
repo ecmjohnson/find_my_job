@@ -1,5 +1,13 @@
 {
-  "zurich" : "robotics",
-  "berlin" : "robotics",
-  "abcxyz" : "cats"
+  "en_GB":
+  {
+    "zurich" : "robotics",
+    "berlin" : "robotics",
+    "abcxyz" : "cats"
+  },
+  "en_CA":
+  {
+    "ottawa" : "robotics",
+    "waterloo" : "robotics"
+  }
 }
