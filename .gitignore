@@ -1,5 +1,6 @@
 # Application specific
 *.ids
+*.sv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
