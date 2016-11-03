@@ -7,7 +7,7 @@ class Job:  # no, not the former Apple CEO
     #      value
 
     def __init__(self, title, description, salary_min,
-                 currency, company, location, url):
+                 currency, company, location, url, timestamp):
         self.title = title
         self.description = description
         self.salary = salary_min
@@ -15,6 +15,7 @@ class Job:  # no, not the former Apple CEO
         self.company = company
         self.location = location
         self.url = url
+        self.timestamp = timestamp
 
     # compute the value of the job to the potential employee
     # (should involve much machine learning, but this is hacking)
@@ -29,7 +30,7 @@ class Job:  # no, not the former Apple CEO
         words = self.title + ' ' + self.description
         num_words = len(words.split(' '))
         for keyword in params['keywords']['pos'].split(';'):
-            self.value += 1
+            self.value += words.count(keyword)
         for keyword in params['keywords']['neg'].split(';'):
-            self.value -= 1
+            self.value -= words.count(keyword)
         # to be continues
